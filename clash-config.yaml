@@ -4,17 +4,123 @@ allow-lan: true
 mode: rule
 log-level: info
 external-controller: 0.0.0.0:9090
+ipv6: false
 
 proxies:
+  # VLESS XHTTP REALITY
+  - name: "vl-xhttp-reality-enc-bitterzhou"
+    type: vless
+    server: 198.46.145.251
+    port: 29731
+    uuid: 79a0bc11-dcc3-4e1c-8e5d-0327cf47ae9e
+    network: http
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: apple.com
+    reality-opts:
+      public-key: "va4HccSs7cxCErmauF9nV3eHhnq-IUblzmQRVbzlpXc"
+      short-id: "1190f09f"
+    client-fingerprint: chrome
+    path: "/79a0bc11-dcc3-4e1c-8e5d-0327cf47ae9e-xh"
+  
+  # VLESS XHTTP
+  - name: "vl-xhttp-enc-bitterzhou"
+    type: vless
+    server: 198.46.145.251
+    port: 50833
+    uuid: 79a0bc11-dcc3-4e1c-8e5d-0327cf47ae9e
+    network: http
+    udp: true
+    flow: xtls-rprx-vision
+    path: "/79a0bc11-dcc3-4e1c-8e5d-0327cf47ae9e-vx"
+  
+  # VLESS WebSocket
+  - name: "vl-ws-enc-bitterzhou"
+    type: vless
+    server: 198.46.145.251
+    port: 12759
+    uuid: 79a0bc11-dcc3-4e1c-8e5d-0327cf47ae9e
+    network: ws
+    udp: true
+    flow: xtls-rprx-vision
+    path: "/79a0bc11-dcc3-4e1c-8e5d-0327cf47ae9e-vw"
+  
+  # VLESS REALITY Vision
+  - name: "vl-reality-vision-bitterzhou"
+    type: vless
+    server: 198.46.145.251
+    port: 31217
+    uuid: 79a0bc11-dcc3-4e1c-8e5d-0327cf47ae9e
+    network: tcp
+    udp: true
+    flow: xtls-rprx-vision
+    tls: true
+    servername: apple.com
+    reality-opts:
+      public-key: "va4HccSs7cxCErmauF9nV3eHhnq-IUblzmQRVbzlpXc"
+      short-id: "1190f09f"
+    client-fingerprint: chrome
+  
+  # Shadowsocks 2022
+  - name: "Shadowsocks-2022-bitterzhou"
+    type: ss
+    server: 198.46.145.251
+    port: 13980
+    cipher: 2022-blake3-aes-128-gcm
+    password: "LQgN1hbUWtZYRDykwr7sNw=="
+    udp: true
+  
+  # ANYTLS
+  - name: "anytls-bitterzhou"
+    type: trojan
+    server: 198.46.145.251
+    port: 11754
+    password: 79a0bc11-dcc3-4e1c-8e5d-0327cf47ae9e
+    sni: ""
+    skip-cert-verify: true
+    udp: true
+    alpn:
+      - http/1.1
+  
+  # ANY REALITY
+  - name: "any-reality-bitterzhou"
+    type: trojan
+    server: 198.46.145.251
+    port: 58547
+    password: 79a0bc11-dcc3-4e1c-8e5d-0327cf47ae9e
+    network: tcp
+    sni: apple.com
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: "OkXm8pO7O4bPPphPIcB4DiRyGiHztF7DuQu1DCYRZVQ"
+      short-id: "32ae7219"
+    udp: true
+  
+  # Hysteria2
+  - name: "hy2-bitterzhou"
+    type: hysteria2
+    server: 198.46.145.251
+    port: 12278
+    password: 79a0bc11-dcc3-4e1c-8e5d-0327cf47ae9e
+    obfs: salamander
+    obfs-password: 79a0bc11-dcc3-4e1c-8e5d-0327cf47ae9e
+    sni: www.bing.com
+    skip-cert-verify: true
+    alpn:
+      - h3
+  
+  # TUIC
   - name: "tuic-bitterzhou"
     type: tuic
     server: 198.46.145.251
-    port: 7777
-    uuid: 5d6747ae-aaeb-4396-9bcb-769ebe4c9df2
-    password: 5d6747ae-aaeb-4396-9bcb-769ebe4c9df2
+    port: 57746
+    uuid: 79a0bc11-dcc3-4e1c-8e5d-0327cf47ae9e
+    password: 79a0bc11-dcc3-4e1c-8e5d-0327cf47ae9e
     ip: 198.46.145.251
     heartbeat-interval: 10000
-    alpn: ["h3"]
+    alpn: 
+      - h3
     reduce-rtt: true
     request-timeout: 8000
     udp-relay-mode: native
@@ -26,20 +132,94 @@ proxy-groups:
   - name: 🚀 节点选择
     type: select
     proxies:
+      - "vl-xhttp-reality-enc-bitterzhou"
+      - "vl-xhttp-enc-bitterzhou"
+      - "vl-ws-enc-bitterzhou"
+      - "vl-reality-vision-bitterzhou"
+      - "Shadowsocks-2022-bitterzhou"
+      - "anytls-bitterzhou"
+      - "any-reality-bitterzhou"
+      - "hy2-bitterzhou"
       - "tuic-bitterzhou"
       - DIRECT
-
+  
   - name: ♻️ 自动选择
     type: url-test
-    url: 'http://www.gstatic.com/generate_204'
+    url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
     proxies:
+      - "vl-xhttp-reality-enc-bitterzhou"
+      - "vl-xhttp-enc-bitterzhou"
+      - "vl-ws-enc-bitterzhou"
+      - "vl-reality-vision-bitterzhou"
+      - "Shadowsocks-2022-bitterzhou"
+      - "anytls-bitterzhou"
+      - "any-reality-bitterzhou"
+      - "hy2-bitterzhou"
       - "tuic-bitterzhou"
+  
+  - name: 🌍 国外媒体
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - ♻️ 自动选择
+      - DIRECT
+  
+  - name: ⚡ 全球直连
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
 
 rules:
-  - DOMAIN-SUFFIX,github.com,🚀 节点选择
-  - DOMAIN-KEYWORD,google,🚀 节点选择
-  - DOMAIN-KEYWORD,youtube,🚀 节点选择
-  - GEOIP,CN,DIRECT
-  - MATCH,♻️ 自动选择
+  # 规则优先级从上到下匹配
+  
+  # 绕过中国大陆IP
+  - GEOIP,CN,⚡ 全球直连
+  
+  # 广告屏蔽
+  - DOMAIN-KEYWORD,adservice,REJECT
+  - DOMAIN-SUFFIX,doubleclick.net,REJECT
+  
+  # 流媒体服务
+  - DOMAIN-SUFFIX,netflix.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,netflix.net,🌍 国外媒体
+  - DOMAIN-SUFFIX,hulu.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,huluim.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,disneyplus.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,hbo.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,hbonow.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,youtube.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,youtu.be,🌍 国外媒体
+  - DOMAIN-SUFFIX,ytimg.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,twitter.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,twimg.com,🌍 国外媒体
+  
+  # 社交媒体
+  - DOMAIN-SUFFIX,facebook.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,fb.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,instagram.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,whatsapp.com,🌍 国外媒体
+  
+  # Google服务
+  - DOMAIN-SUFFIX,google.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,gstatic.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,googleapis.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,gmail.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,googlemail.com,🌍 国外媒体
+  
+  # GitHub
+  - DOMAIN-SUFFIX,github.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,github.io,🌍 国外媒体
+  - DOMAIN-SUFFIX,githubusercontent.com,🌍 国外媒体
+  
+  # 其他常用国外服务
+  - DOMAIN-SUFFIX,openai.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,chat.openai.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,reddit.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,wikipedia.org,🌍 国外媒体
+  - DOMAIN-SUFFIX,medium.com,🌍 国外媒体
+  
+  # 最终规则
+  - MATCH,🚀 节点选择
