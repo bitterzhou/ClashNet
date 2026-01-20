@@ -1,0 +1,27 @@
+port: 7890
+socks-port: 7891
+allow-lan: true
+mode: rule
+log-level: info
+external-controller: 127.0.0.1:9090
+proxies:
+  - name: "Tuic-7777"
+    type: tuic
+    server: 198.46.145.251
+    port: 7777
+    uuid: 5d6747ae-aaeb-4396-9bcb-769ebe4c9df2
+    password: 5d6747ae-aaeb-4396-9bcb-769ebe4c9df2
+    alpn:
+      - h3
+    congestion-control: bbr
+    udp-relay-mode: native
+    sni: www.bing.com
+    allow-insecure: true
+proxy-groups:
+  - name: "默认节点"
+    type: select
+    proxies:
+      - Tuic-7777
+      - DIRECT
+rules:
+  - MATCH,默认节点
