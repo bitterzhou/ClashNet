@@ -127,41 +127,6 @@ proxy-groups:
       - "BITTER-SERVER-1-hy2"
       - "BITTER-SERVER-1-tuic"
 
-  # 流媒体专用组
-  - name: 📺 国外媒体
-    type: select
-    proxies:
-      - 🚀 TUIC代理
-      - ⚡ 自动选择
-      - DIRECT
-
-  # 国外网站组
-  - name: 🌍 国外网站
-    type: select
-    proxies:
-      - 🚀 TUIC代理
-      - ⚡ 自动选择
-      - DIRECT
-
-  # AI服务组
-  - name: 🤖 AI服务
-    type: select
-    proxies:
-      - 🚀 TUIC代理
-      - ⚡ 自动选择
-
-  # 国内直连组
-  - name: 🇨🇳 国内直连
-    type: select
-    proxies:
-      - DIRECT
-
-  # 广告拦截组
-  - name: 🚫 广告拦截
-    type: select
-    proxies:
-      - REJECT
-
 # 规则配置（按优先级从上到下匹配）
 rules:
   # ==== 本地和局域网直连 ====
