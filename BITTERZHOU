@@ -113,20 +113,6 @@ proxy-groups:
       - "BITTER-SERVER-1-tuic"
       - DIRECT
 
-  # 自动测速组
-  - name: ⚡ 自动选择
-    type: url-test
-    url: "http://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
-    proxies:
-      - "TUIC-bitterzhou"
-      - "BITTER-SERVER-1-Shadowsocks-2022"
-      - "BITTER-SERVER-1-anytls"
-      - "BITTER-SERVER-1-any-reality"
-      - "BITTER-SERVER-1-hy2"
-      - "BITTER-SERVER-1-tuic"
-
 # 规则配置（按优先级从上到下匹配）
 rules:
   # ==== 本地和局域网直连 ====
