@@ -40,104 +40,34 @@ dns:
 
 # ================= 节点配置 =================
 proxies:
-  # --- Vless-xhttp-reality-enc 节点 ---
-  - name: "BITTER-SERVER-1-vl-xhttp-reality-enc-dedirock-96354141"
-    type: vless
-    server: 192.227.229.43
-    port: 29488
-    uuid: 8d014a08-50f0-4ffc-ac86-5bbf518396af
-    encryption: mlkem768x25519plus.native.0rtt.NGQj3MfJ9MVQygq7IXCQMbIPkmOxMGakNXipT0UVnRskJmSfJ4VmycNkeZx10KJC0tFFJ4F9v1RLYNlqnDdyJQGfXCsjp9EMMPlFAABqcNV9oxg2qALEBCRq6UlrL3U8CcmbqiMQkWVZ7OCtD8SN00eNM0S7DORtXPwJSTsT6EaxTavPKPRJFvCsY9HJ8DHKNuNPqfTFTNCUDZeQS9dS4egCJpSth2AoUoSQzVagzgQqq7Nox8uE2eIWsOc9C4sgAUx-hiQ4EndObXZUGnVAGSgmJ7ST-3AZy2ECXeHKK7cVNPNpvIcNiUgQ2xq9fTdVp9E9rAWtCyubGxy52iuOACOdkkG4UzGtH7KqfaqaSte23np9aDEf08pz7lUiisBUDXCUFRlijHNY7jtSuTxp4mC7pHKdvuUrw5KXwbyJQFET8zcUYUTIxii9yeYE8DKiykZrn6cefEBK8cxYZaJ89PKDYxE0ybOrqCVpKWfPQBoRaCZmXdKLchor6EYc5EKqg0YKCYGUqzgZoPAWA4OhLequCnAalOSb31YtpdhMB6Bikpy_dVJ_qztqBEgDWIgwSlTFFHiS_MjP_xuP9zeVwUGqHVtvHVhvxuFQOtSYILN5WcClQMA86NCNUtU6rcmEYLhZZ1O5JTQmDoiCt3F1_wCB1dyqQ4poPRUHmqOd6zYeK_KcRZaNtSgHnydWghIQpQmzJXUGqGip1URZjApP1Sd6NahSnPeOH2bEzvlf2nc2eby5DeC52mQ1_Ymo8mxyKTghJmYaPHREXiSBPRct7JwhbNcfuASoHTOyM-ppQXU7cDJP5vscD7Fh9Qk1fEQJJzWnDhA-JzWiTNY5UouUk3mQnoWEe5qeqCoG_zF2m-ptYbIotcseZ8CBNqBydvVSe5kpjkg1KotrVyIAC6xTtNhl57QEhxRwy2kXU5IszodwFOE7VOpRY-G8OwgxR7NH45lUpmkmsjR9GPRJwYqLMuGXsqayuWcRYKJAPGhryDe0zMwV1wCKRoigO-UF9Ey1VQcue8SAouhmztmy3tc-t5tSvsdEU7UIjvNIxkGc9IqSi3m3-5BEyyKoNBZK2CR_J6JUequS8GIDD5tDF_ikx5MMFFVns2IIv_ZAUom3dEchu6vDyHaTQzVQISOfHCNvx9kzZPpgwDmwZPS1NEht9qMG3VAkN-TCPktHmjWRD_g9USk-hNASeNzFrKM-PfqWy3vNgUaqzNVH8HF8s1giUxBiYzlpgtzJZFwO5Xo2U3SYGDyI1MY-BktoVOc1SxBVjovHxXKF6PtDhbJlbmG2AJIDYbQBmMfJAtMJmQOYSyBKgMK6fmVOs3VGEwOoJ9wnflld-eJrUVJz7-mbH-cOEPVQaRzCJIVg1clVMBhpzqQojfmCh2E6kdGmarp-hggdavOY6kMVKLWxoYWqNzVbPwIvkpmV_feYCEJirxEPz9lEOUnNWkMhI2tYOdAtR3BDbYq6ubFOn7RkzJLDOjVwOrZRbHKGkEGAIrghPnelSDweFSFeb3hehocKzqxEDqXFGORfRTiW50hrnJS_2Of0XBb9u8-b_JtxGOqfaAciGWk
-    network: xhttp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: apple.com
-    client-fingerprint: chrome
-    reality-opts:
-      public-key: zcs9PoJSF7N908ZsG7zQiHxm5obdJrbB_ce1HICIHm8
-      short-id: 159c7dd8
-    xhttp-opts:
-      mode: auto
-      path: "/8d014a08-50f0-4ffc-ac86-5bbf518396af-xh"
-
-  # --- Vless-xhttp-enc 节点 ---
-  - name: "BITTER-SERVER-1-vl-xhttp-enc-dedirock-96354141"
-    type: vless
-    server: 192.227.229.43
-    port: 29658
-    uuid: 8d014a08-50f0-4ffc-ac86-5bbf518396af
-    encryption: mlkem768x25519plus.native.0rtt.NGQj3MfJ9MVQygq7IXCQMbIPkmOxMGakNXipT0UVnRskJmSfJ4VmycNkeZx10KJC0tFFJ4F9v1RLYNlqnDdyJQGfXCsjp9EMMPlFAABqcNV9oxg2qALEBCRq6UlrL3U8CcmbqiMQkWVZ7OCtD8SN00eNM0S7DORtXPwJSTsT6EaxTavPKPRJFvCsY9HJ8DHKNuNPqfTFTNCUDZeQS9dS4egCJpSth2AoUoSQzVagzgQqq7Nox8uE2eIWsOc9C4sgAUx-hiQ4EndObXZUGnVAGSgmJ7ST-3AZy2ECXeHKK7cVNPNpvIcNiUgQ2xq9fTdVp9E9rAWtCyubGxy52iuOACOdkkG4UzGtH7KqfaqaSte23np9aDEf08pz7lUiisBUDXCUFRlijHNY7jtSuTxp4mC7pHKdvuUrw5KXwbyJQFET8zcUYUTIxii9yeYE8DKiykZrn6cefEBK8cxYZaJ89PKDYxE0ybOrqCVpKWfPQBoRaCZmXdKLchor6EYc5EKqg0YKCYGUqzgZoPAWA4OhLequCnAalOSb31YtpdhMB6Bikpy_dVJ_qztqBEgDWIgwSlTFFHiS_MjP_xuP9zeVwUGqHVtvHVhvxuFQOtSYILN5WcClQMA86NCNUtU6rcmEYLhZZ1O5JTQmDoiCt3F1_wCB1dyqQ4poPRUHmqOd6zYeK_KcRZaNtSgHnydWghIQpQmzJXUGqGip1URZjApP1Sd6NahSnPeOH2bEzvlf2nc2eby5DeC52mQ1_Ymo8mxyKTghJmYaPHREXiSBPRct7JwhbNcfuASoHTOyM-ppQXU7cDJP5vscD7Fh9Qk1fEQJJzWnDhA-JzWiTNY5UouUk3mQnoWEe5qeqCoG_zF2m-ptYbIotcseZ8CBNqBydvVSe5kpjkg1KotrVyIAC6xTtNhl57QEhxRwy2kXU5IszodwFOE7VOpRY-G8OwgxR7NH45lUpmkmsjR9GPRJwYqLMuGXsqayuWcRYKJAPGhryDe0zMwV1wCKRoigO-UF9Ey1VQcue8SAouhmztmy3tc-t5tSvsdEU7UIjvNIxkGc9IqSi3m3-5BEyyKoNBZK2CR_J6JUequS8GIDD5tDF_ikx5MMFFVns2IIv_ZAUom3dEchu6vDyHaTQzVQISOfHCNvx9kzZPpgwDmwZPS1NEht9qMG3VAkN-TCPktHmjWRD_g9USk-hNASeNzFrKM-PfqWy3vNgUaqzNVH8HF8s1giUxBiYzlpgtzJZFwO5Xo2U3SYGDyI1MY-BktoVOc1SxBVjovHxXKF6PtDhbJlbmG2AJIDYbQBmMfJAtMJmQOYSyBKgMK6fmVOs3VGEwOoJ9wnflld-eJrUVJz7-mbH-cOEPVQaRzCJIVg1clVMBhpzqQojfmCh2E6kdGmarp-hggdavOY6kMVKLWxoYWqNzVbPwIvkpmV_feYCEJirxEPz9lEOUnNWkMhI2tYOdAtR3BDbYq6ubFOn7RkzJLDOjVwOrZRbHKGkEGAIrghPnelSDweFSFeb3hehocKzqxEDqXFGORfRTiW50hrnJS_2Of0XBb9u8-b_JtxGOqfaAciGWk
-    network: xhttp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    skip-cert-verify: true
-    xhttp-opts:
-      mode: auto
-      path: "/8d014a08-50f0-4ffc-ac86-5bbf518396af-vx"
-
-  # --- Vless-ws-enc 节点 ---
-  - name: "BITTER-SERVER-1-vl-ws-enc-dedirock-96354141"
-    type: vless
-    server: 192.227.229.43
-    port: 30207
-    uuid: 8d014a08-50f0-4ffc-ac86-5bbf518396af
-    encryption: mlkem768x25519plus.native.0rtt.NGQj3MfJ9MVQygq7IXCQMbIPkmOxMGakNXipT0UVnRskJmSfJ4VmycNkeZx10KJC0tFFJ4F9v1RLYNlqnDdyJQGfXCsjp9EMMPlFAABqcNV9oxg2qALEBCRq6UlrL3U8CcmbqiMQkWVZ7OCtD8SN00eNM0S7DORtXPwJSTsT6EaxTavPKPRJFvCsY9HJ8DHKNuNPqfTFTNCUDZeQS9dS4egCJpSth2AoUoSQzVagzgQqq7Nox8uE2eIWsOc9C4sgAUx-hiQ4EndObXZUGnVAGSgmJ7ST-3AZy2ECXeHKK7cVNPNpvIcNiUgQ2xq9fTdVp9E9rAWtCyubGxy52iuOACOdkkG4UzGtH7KqfaqaSte23np9aDEf08pz7lUiisBUDXCUFRlijHNY7jtSuTxp4mC7pHKdvuUrw5KXwbyJQFET8zcUYUTIxii9yeYE8DKiykZrn6cefEBK8cxYZaJ89PKDYxE0ybOrqCVpKWfPQBoRaCZmXdKLchor6EYc5EKqg0YKCYGUqzgZoPAWA4OhLequCnAalOSb31YtpdhMB6Bikpy_dVJ_qztqBEgDWIgwSlTFFHiS_MjP_xuP9zeVwUGqHVtvHVhvxuFQOtSYILN5WcClQMA86NCNUtU6rcmEYLhZZ1O5JTQmDoiCt3F1_wCB1dyqQ4poPRUHmqOd6zYeK_KcRZaNtSgHnydWghIQpQmzJXUGqGip1URZjApP1Sd6NahSnPeOH2bEzvlf2nc2eby5DeC52mQ1_Ymo8mxyKTghJmYaPHREXiSBPRct7JwhbNcfuASoHTOyM-ppQXU7cDJP5vscD7Fh9Qk1fEQJJzWnDhA-JzWiTNY5UouUk3mQnoWEe5qeqCoG_zF2m-ptYbIotcseZ8CBNqBydvVSe5kpjkg1KotrVyIAC6xTtNhl57QEhxRwy2kXU5IszodwFOE7VOpRY-G8OwgxR7NH45lUpmkmsjR9GPRJwYqLMuGXsqayuWcRYKJAPGhryDe0zMwV1wCKRoigO-UF9Ey1VQcue8SAouhmztmy3tc-t5tSvsdEU7UIjvNIxkGc9IqSi3m3-5BEyyKoNBZK2CR_J6JUequS8GIDD5tDF_ikx5MMFFVns2IIv_ZAUom3dEchu6vDyHaTQzVQISOfHCNvx9kzZPpgwDmwZPS1NEht9qMG3VAkN-TCPktHmjWRD_g9USk-hNASeNzFrKM-PfqWy3vNgUaqzNVH8HF8s1giUxBiYzlpgtzJZFwO5Xo2U3SYGDyI1MY-BktoVOc1SxBVjovHxXKF6PtDhbJlbmG2AJIDYbQBmMfJAtMJmQOYSyBKgMK6fmVOs3VGEwOoJ9wnflld-eJrUVJz7-mbH-cOEPVQaRzCJIVg1clVMBhpzqQojfmCh2E6kdGmarp-hggdavOY6kMVKLWxoYWqNzVbPwIvkpmV_feYCEJirxEPz9lEOUnNWkMhI2tYOdAtR3BDbYq6ubFOn7RkzJLDOjVwOrZRbHKGkEGAIrghPnelSDweFSFeb3hehocKzqxEDqXFGORfRTiW50hrnJS_2Of0XBb9u8-b_JtxGOqfaAciGWk
-    network: ws
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    skip-cert-verify: true
-    ws-opts:
-      path: "/8d014a08-50f0-4ffc-ac86-5bbf518396af-vw"
-      headers:
-        Host: 192.227.229.43
-
-  # --- Vless-tcp-reality-vision 节点 ---
-  - name: "BITTER-SERVER-1-vl-reality-vision-dedirock-96354141"
-    type: vless
-    server: 192.227.229.43
-    port: 30934
-    uuid: 8d014a08-50f0-4ffc-ac86-5bbf518396af
-    encryption: none
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: apple.com
-    client-fingerprint: chrome
-    reality-opts:
-      public-key: zcs9PoJSF7N908ZsG7zQiHxm5obdJrbB_ce1HICIHm8
-      short-id: 159c7dd8
-
   # --- Shadowsocks-2022 节点 ---
   - name: "BITTER-SERVER-1-Shadowsocks-2022-dedirock-96354141"
     type: ss
     server: 192.227.229.43
-    port: 22599
+    port: 12153
     cipher: 2022-blake3-aes-128-gcm
-    password: "re4144SGF/3hXjv0x+pvw=="
+    password: "5GzAZ2ntPtvB5SXJhPj9FA=="
 
   # --- AnyTLS 节点 ---
   - name: "BITTER-SERVER-1-anytls-dedirock-96354141"
     type: anytls
     server: 192.227.229.43
-    port: 39963
-    uuid: 8d014a08-50f0-4ffc-ac86-5bbf518396af
+    port: 62541
+    uuid: 8f0de0a3-abe0-4bb5-ad03-1e23adb29ef7
     skip-cert-verify: true
 
   # --- Any-Reality 节点 ---
   - name: "BITTER-SERVER-1-any-reality-dedirock-96354141"
     type: anytls
     server: 192.227.229.43
-    port: 38591
-    uuid: 8d014a08-50f0-4ffc-ac86-5bbf518396af
+    port: 32053
+    uuid: 8f0de0a3-abe0-4bb5-ad03-1e23adb29ef7
     tls: true
     servername: apple.com
     client-fingerprint: chrome
     reality-opts:
-      public-key: hN_x4A9Mr2J_uNC98h157-wHSndRPuWAfza7G6UpYXQ
-      short-id: 3f15e1d5
+      public-key: JJtu1TMg2jS95z0i9_dU4HYb_JzOThA0YWC8ax-oyGM
+      short-id: cea046c1
     network: tcp
     header:
       type: none
@@ -146,8 +76,8 @@ proxies:
   - name: "BITTER-SERVER-1-hy2-dedirock-96354141"
     type: hysteria2
     server: 192.227.229.43
-    port: 11432
-    password: 8d014a08-50f0-4ffc-ac86-5bbf518396af
+    port: 53830
+    password: 8f0de0a3-abe0-4bb5-ad03-1e23adb29ef7
     sni: www.bing.com
     skip-cert-verify: true
     alpn:
@@ -157,9 +87,9 @@ proxies:
   - name: "BITTER-SERVER-1-tuic-dedirock-96354141"
     type: tuic
     server: 192.227.229.43
-    port: 41976
-    uuid: 8d014a08-50f0-4ffc-ac86-5bbf518396af
-    password: 8d014a08-50f0-4ffc-ac86-5bbf518396af
+    port: 52550
+    uuid: 8f0de0a3-abe0-4bb5-ad03-1e23adb29ef7
+    password: 8f0de0a3-abe0-4bb5-ad03-1e23adb29ef7
     ip: 192.227.229.43
     alpn: [h3]
     reduce-rtt: true
@@ -175,10 +105,6 @@ proxy-groups:
     type: select
     proxies:
       - ⚡ 自动选择
-      - BITTER-SERVER-1-vl-xhttp-reality-enc-dedirock-96354141
-      - BITTER-SERVER-1-vl-xhttp-enc-dedirock-96354141
-      - BITTER-SERVER-1-vl-ws-enc-dedirock-96354141
-      - BITTER-SERVER-1-vl-reality-vision-dedirock-96354141
       - BITTER-SERVER-1-Shadowsocks-2022-dedirock-96354141
       - BITTER-SERVER-1-anytls-dedirock-96354141
       - BITTER-SERVER-1-any-reality-dedirock-96354141
@@ -193,10 +119,6 @@ proxy-groups:
     interval: 300
     tolerance: 50
     proxies:
-      - BITTER-SERVER-1-vl-xhttp-reality-enc-dedirock-96354141
-      - BITTER-SERVER-1-vl-xhttp-enc-dedirock-96354141
-      - BITTER-SERVER-1-vl-ws-enc-dedirock-96354141
-      - BITTER-SERVER-1-vl-reality-vision-dedirock-96354141
       - BITTER-SERVER-1-Shadowsocks-2022-dedirock-96354141
       - BITTER-SERVER-1-anytls-dedirock-96354141
       - BITTER-SERVER-1-any-reality-dedirock-96354141
