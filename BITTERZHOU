@@ -71,16 +71,6 @@ proxies:
     password: "5GzAZ2ntPtvB5SXJhPj9FA=="
     udp: true
 
-  # 新增节点 - AnyTLS
-  - name: "BITTER-SERVER-1-anytls"
-    type: anytls
-    server: 192.227.229.43
-    port: 62541
-    uuid: 8f0de0a3-abe0-4bb5-ad03-1e23adb29ef7
-    tls: true
-    skip-cert-verify: true
-    servername: ""
-
   # 新增节点 - Any-Reality
   - name: "BITTER-SERVER-1-any-reality"
     type: anytls
