@@ -1,4 +1,4 @@
-# Clash 配置文件 - TUIC节点专用
+# Clash 配置文件 - TUIC节点专用 (双节点版)
 mixed-port: 7890
 socks-port: 7891
 redir-port: 7892
@@ -58,20 +58,36 @@ proxies:
     congestion-controller: bbr
     skip-cert-verify: true
     sni: www.bing.com
-    # disable-sni: false
-    # max-udp-relay-packet-size: 1500
-    # max-open-streams: 100
+
+  # 新增节点
+  - name: "tuic-dedirock-96354141"
+    type: tuic
+    server: 192.227.229.43
+    port: 7777
+    uuid: d7c2f198-a82d-4400-bcc6-2798ef39a6f7
+    password: d7c2f198-a82d-4400-bcc6-2798ef39a6f7
+    ip: 192.227.229.43
+    heartbeat-interval: 10000
+    alpn: 
+      - h3
+    reduce-rtt: true
+    request-timeout: 8000
+    udp-relay-mode: native
+    congestion-controller: bbr
+    skip-cert-verify: true  # 对应 allow_insecure=1
+    sni: www.bing.com
 
 # 代理组配置
 proxy-groups:
-  # 主要代理组
+  # 主要代理组 - 手动选择
   - name: 🚀 TUIC代理
     type: select
     proxies:
       - "TUIC-bitterzhou"
+      - "tuic-dedirock-96354141" # 已添加新节点
       - DIRECT
 
-  # 自动测速组
+  # 自动测速组 - 自动选择延迟最低的节点
   - name: ⚡ 自动选择
     type: url-test
     url: "http://www.gstatic.com/generate_204"
@@ -79,6 +95,7 @@ proxy-groups:
     tolerance: 50
     proxies:
       - "TUIC-bitterzhou"
+      - "tuic-dedirock-96354141" # 已添加新节点
 
   # 流媒体专用组
   - name: 📺 国外媒体
@@ -232,6 +249,6 @@ rules:
   # ==== 最终规则 ====
   # 国外IP走代理
   - GEOIP,!CN,🌍 国外网站
-  
+   
   # 剩余所有流量走代理
   - MATCH,🚀 TUIC代理
