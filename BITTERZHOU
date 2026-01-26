@@ -1,4 +1,4 @@
-# Clash 配置文件 - 多协议节点版
+# Clash 配置文件 - TUIC节点专用
 mixed-port: 7890
 socks-port: 7891
 redir-port: 7892
@@ -42,7 +42,6 @@ dns:
 
 # 节点配置
 proxies:
-  # 原有TUIC节点
   - name: "TUIC-bitterzhou"
     type: tuic
     server: 198.46.145.251
@@ -58,9 +57,12 @@ proxies:
     udp-relay-mode: native
     congestion-controller: bbr
     skip-cert-verify: true
-    sni: www.bing.com
+    sni: www.apple.com
+    # disable-sni: false
+    # max-udp-relay-packet-size: 1500
+    # max-open-streams: 100
 
-  # 新增节点 - Shadowsocks 2022
+ # 新增节点 - Shadowsocks 2022
   - name: "BITTER-SERVER-1-Shadowsocks-2022"
     type: ss
     server: 192.227.229.43
@@ -99,7 +101,7 @@ proxies:
     server: 192.227.229.43
     port: 53830
     password: 8f0de0a3-abe0-4bb5-ad03-1e23adb29ef7
-    sni: "www.bing.com"
+    sni: "www.apple.com"
     alpn: ["h3"]
     skip-cert-verify: true
     up: "100 Mbps"
@@ -119,12 +121,12 @@ proxies:
     udp-relay-mode: native
     congestion-controller: bbr
     skip-cert-verify: true
-    sni: "www.bing.com"
+    sni: "www.apple.com"
 
 # 代理组配置
 proxy-groups:
   # 主要代理组
-  - name: 🚀 所有代理
+  - name: 🚀 TUIC代理
     type: select
     proxies:
       - "TUIC-bitterzhou"
@@ -153,7 +155,7 @@ proxy-groups:
   - name: 📺 国外媒体
     type: select
     proxies:
-      - 🚀 所有代理
+      - 🚀 TUIC代理
       - ⚡ 自动选择
       - DIRECT
 
@@ -161,7 +163,7 @@ proxy-groups:
   - name: 🌍 国外网站
     type: select
     proxies:
-      - 🚀 所有代理
+      - 🚀 TUIC代理
       - ⚡ 自动选择
       - DIRECT
 
@@ -169,7 +171,7 @@ proxy-groups:
   - name: 🤖 AI服务
     type: select
     proxies:
-      - 🚀 所有代理
+      - 🚀 TUIC代理
       - ⚡ 自动选择
 
   # 国内直连组
@@ -303,4 +305,6 @@ rules:
   - GEOIP,!CN,🌍 国外网站
   
   # 剩余所有流量走代理
-  - MATCH,🚀 所有代理
+  - MATCH,🚀 TUIC代理
+
+
