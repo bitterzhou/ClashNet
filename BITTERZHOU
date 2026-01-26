@@ -58,11 +58,8 @@ proxies:
     congestion-controller: bbr
     skip-cert-verify: true
     sni: www.apple.com
-    # disable-sni: false
-    # max-udp-relay-packet-size: 1500
-    # max-open-streams: 100
 
- # 新增节点 - Shadowsocks 2022
+  # 新增节点 - Shadowsocks 2022
   - name: "BITTER-SERVER-1-Shadowsocks-2022"
     type: ss
     server: 192.227.229.43
@@ -109,6 +106,36 @@ proxy-groups:
       - "BITTER-SERVER-1-Shadowsocks-2022"
       - "BITTER-SERVER-1-hy2"
       - "BITTER-SERVER-1-tuic"
+      - DIRECT
+  
+  # 补充缺失的代理组（解决规则引用错误）
+  - name: 🚫 广告拦截
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+  
+  - name: 🇨🇳 国内直连
+    type: select
+    proxies:
+      - DIRECT
+  
+  - name: 🤖 AI服务
+    type: select
+    proxies:
+      - 🚀 TUIC代理
+      - DIRECT
+  
+  - name: 📺 国外媒体
+    type: select
+    proxies:
+      - 🚀 TUIC代理
+      - DIRECT
+  
+  - name: 🌍 国外网站
+    type: select
+    proxies:
+      - 🚀 TUIC代理
       - DIRECT
 
 # 规则配置（按优先级从上到下匹配）
@@ -231,5 +258,3 @@ rules:
   
   # 剩余所有流量走代理
   - MATCH,🚀 TUIC代理
-
-
