@@ -71,20 +71,6 @@ proxies:
     password: "5GzAZ2ntPtvB5SXJhPj9FA=="
     udp: true
 
-  # 新增节点 - Any-Reality
-  - name: "BITTER-SERVER-1-any-reality"
-    type: anytls
-    server: 192.227.229.43
-    port: 32053
-    uuid: 8f0de0a3-abe0-4bb5-ad03-1e23adb29ef7
-    tls: true
-    skip-cert-verify: true
-    servername: "apple.com"
-    reality-opts:
-      public-key: "JJtu1TMg2jS95z0i9_dU4HYb_JzOThA0YWC8ax-oyGM"
-      short-id: "cea046c1"
-    client-fingerprint: "chrome"
-
   # 新增节点 - Hysteria2
   - name: "BITTER-SERVER-1-hy2"
     type: hysteria2
