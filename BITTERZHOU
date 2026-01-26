@@ -107,8 +107,6 @@ proxy-groups:
     proxies:
       - "TUIC-bitterzhou"
       - "BITTER-SERVER-1-Shadowsocks-2022"
-      - "BITTER-SERVER-1-anytls"
-      - "BITTER-SERVER-1-any-reality"
       - "BITTER-SERVER-1-hy2"
       - "BITTER-SERVER-1-tuic"
       - DIRECT
