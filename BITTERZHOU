@@ -63,30 +63,30 @@ proxies:
   - name: "BITTER-SERVER-1-Shadowsocks-2022"
     type: ss
     server: 192.227.229.43
-    port: 41473  # 修改：原12153 → 新端口41473
+    port: 41473
     cipher: 2022-blake3-aes-128-gcm
-    password: "5GzAZ2ntPtvB5SXJhPj9FA=="  # 注：Argosbx输出的SS链接密码编码后对应此值，无需修改
+    password: "6gnvouDM4achQoBZSElZiQ=="
     udp: true
 
-# 新增节点 - Hysteria2
+  # 新增节点 - Hysteria2
   - name: "BITTER-SERVER-1-hy2"
     type: hysteria2
     server: 192.227.229.43
-    port: 56633  # 修改：原53830 → 新端口56633
-    password: 9b592262-feb7-40d4-a9e2-f07af2e8812d  # 修改：原UUID → 新UUID
-    sni: "www.bing.com"  # 修改：原www.apple.com → www.bing.com
+    port: 56633
+    password: 9b592262-feb7-40d4-a9e2-f07af2e8812d
+    sni: "www.bing.com"
     alpn: ["h3"]
     skip-cert-verify: true
     up: "1000 Mbps"
     down: "1000 Mbps"
 
-# 新增节点 - Tuic
+  # 新增节点 - Tuic
   - name: "BITTER-SERVER-1-tuic"
     type: tuic
     server: 192.227.229.43
-    port: 38735  # 修改：原52550 → 新端口38735
-    uuid: 9b592262-feb7-40d4-a9e2-f07af2e8812d  # 修改：原UUID → 新UUID
-    password: 9b592262-feb7-40d4-a9e2-f07af2e8812d  # 修改：原密码 → 新UUID（与uuid一致）
+    port: 38735
+    uuid: 9b592262-feb7-40d4-a9e2-f07af2e8812d
+    password: 9b592262-feb7-40d4-a9e2-f07af2e8812d
     heartbeat-interval: 10000
     alpn: ["h3"]
     reduce-rtt: true
@@ -94,7 +94,7 @@ proxies:
     udp-relay-mode: native
     congestion-controller: bbr
     skip-cert-verify: true
-    sni: "www.bing.com"  # 修改：原www.apple.com → www.bing.com
+    sni: "www.bing.com"
 
 # 代理组配置（关键修正：统一使用纯文本名称，避免符号导致的匹配问题）
 proxy-groups:
