@@ -63,17 +63,17 @@ proxies:
   - name: "BITTER-SERVER-1-Shadowsocks-2022"
     type: ss
     server: 192.227.229.43
-    port: 41473
+    port: 37703
     cipher: 2022-blake3-aes-128-gcm
-    password: "6gnvouDM4achQoBZSElZiQ=="
+    password: "BlXKwJZCEjDURhzy+Z55IA=="
     udp: true
 
   # 新增节点 - Hysteria2
   - name: "BITTER-SERVER-1-hy2"
     type: hysteria2
     server: 192.227.229.43
-    port: 56633
-    password: 9b592262-feb7-40d4-a9e2-f07af2e8812d
+    port: 37701
+    password: 27e12f03-1adb-4d69-a240-468ab6b9d966
     sni: "www.bing.com"
     alpn: ["h3"]
     skip-cert-verify: true
@@ -84,9 +84,9 @@ proxies:
   - name: "BITTER-SERVER-1-tuic"
     type: tuic
     server: 192.227.229.43
-    port: 38735
-    uuid: 9b592262-feb7-40d4-a9e2-f07af2e8812d
-    password: 9b592262-feb7-40d4-a9e2-f07af2e8812d
+    port: 37702
+    uuid: 27e12f03-1adb-4d69-a240-468ab6b9d966
+    password: 27e12f03-1adb-4d69-a240-468ab6b9d966
     heartbeat-interval: 10000
     alpn: ["h3"]
     reduce-rtt: true
