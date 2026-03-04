@@ -62,16 +62,16 @@ proxies:
 # 新增节点 - Shadowsocks 2022
   - name: "BITTER-SERVER-1-Shadowsocks-2022"
     type: ss
-    server: 192.227.229.43
+    server: 192.227.229.51
     port: 37703
     cipher: 2022-blake3-aes-128-gcm
-    password: "BlXKwJZCEjDURhzz+Z55IA=="
+    password: "GJ7G6hMPKQ6He1w=="
     udp: true
 
   # 新增节点 - Hysteria2
   - name: "BITTER-SERVER-1-hy2"
     type: hysteria2
-    server: 192.227.229.43
+    server: 192.227.229.51
     port: 37701
     password: 27e12f03-1adb-4d69-a240-468ab6b9d966
     sni: "www.bing.com"
@@ -83,7 +83,7 @@ proxies:
   # 新增节点 - Tuic
   - name: "BITTER-SERVER-1-tuic"
     type: tuic
-    server: 192.227.229.43
+    server: 192.227.229.51
     port: 37702
     uuid: 27e12f03-1adb-4d69-a240-468ab6b9d966
     password: 27e12f03-1adb-4d69-a240-468ab6b9d966
