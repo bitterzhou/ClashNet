@@ -65,7 +65,7 @@ proxies:
   server: 192.227.229.51
   port: 37703
   cipher: 2022-blake3-aes-128-gcm
-  password: "gnyTW6/GJ7G6hMPKQ6He1w=="
+  password: "CQxKhE4kiBdUkPcs0JQIbQ=="
   udp: true
 
 # 新增节点 - Hysteria2
