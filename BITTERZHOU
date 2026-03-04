@@ -1,4 +1,4 @@
-# Clash 配置文件 - TUIC节点专用
+# Clash 配置文件
 mixed-port: 7890
 socks-port: 7891
 redir-port: 7892
@@ -9,13 +9,10 @@ external-controller: 0.0.0.0:9090
 secret: ""
 ipv6: false
 
-# 启用TUN模式（可选，提升性能）
+# 启用TUN模式
 tun:
-  enable: false  # 如果开启，需要管理员权限
+  enable: false
   stack: system
-  dns-hijack:
-    - tcp://any:53
-    - udp://any:53
   auto-route: true
   auto-detect-interface: true
 
@@ -26,21 +23,13 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   nameserver:
-    - 223.5.5.5  # 阿里DNS
-    - 119.29.29.29  # 腾讯DNS
-    - 114.114.114.114  # 114DNS
+    - 223.5.5.5
+    - 119.29.29.29
   fallback:
     - tls://1.1.1.1
-    - tls://8.8.8.8
     - https://dns.google/dns-query
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-    ipcidr:
-      - 240.0.0.0/4
-      - 0.0.0.0/32
 
-# 节点配置
+# 节点配置 (已修正缩进和格式)
 proxies:
   - name: "TUIC-bitterzhou"
     type: tuic
@@ -48,18 +37,14 @@ proxies:
     port: 7777
     uuid: c3e44804-5149-4bfe-9a33-d5051af3c65e
     password: c3e44804-5149-4bfe-9a33-d5051af3c65e
-    ip: 198.46.145.251
-    heartbeat-interval: 10000
-    alpn: 
-      - h3
+    alpn: [h3]
     reduce-rtt: true
-    request-timeout: 8000
     udp-relay-mode: native
     congestion-controller: bbr
     skip-cert-verify: true
     sni: www.apple.com
 
-- name: "Shadowsocks-2022-dedirock-96354141"
+  - name: "Shadowsocks-2022-dedirock-96354141"
     type: ss
     server: 192.227.229.51
     port: 41103
@@ -89,165 +74,62 @@ proxies:
     skip-cert-verify: true
     sni: "www.bing.com"
 
-# 代理组配置（关键修正：统一使用纯文本名称，避免符号导致的匹配问题）
+# 代理组配置 (已修正节点名称引用)
 proxy-groups:
-  # 主要代理组
   - name: "TUIC代理"
     type: select
     proxies:
       - "TUIC-bitterzhou"
-      - "BITTER-SERVER-1-Shadowsocks-2022"
-      - "BITTER-SERVER-1-hy2"
-      - "BITTER-SERVER-1-tuic"
+      - "Shadowsocks-2022-dedirock-96354141"
+      - "hy2-dedirock-96354141"
+      - "tuic-dedirock-96354141"
       - DIRECT
-  
-  # 修正：使用纯文本名称"广告拦截"，和规则中引用的名称完全一致
+
   - name: "广告拦截"
     type: select
     proxies:
       - REJECT
       - DIRECT
-  
+
   - name: "国内直连"
     type: select
     proxies:
       - DIRECT
-  
+
   - name: "AI服务"
     type: select
     proxies:
       - "TUIC代理"
       - DIRECT
-  
+
   - name: "国外媒体"
     type: select
     proxies:
       - "TUIC代理"
       - DIRECT
-  
+
   - name: "国外网站"
     type: select
     proxies:
       - "TUIC代理"
       - DIRECT
 
-# 规则配置（全部使用纯文本代理组名称，确保匹配）
+# 规则配置
 rules:
-  # ==== 本地和局域网直连 ====
   - DOMAIN-SUFFIX,local,DIRECT
   - IP-CIDR,127.0.0.0/8,DIRECT
   - IP-CIDR,172.16.0.0/12,DIRECT
   - IP-CIDR,192.168.0.0/16,DIRECT
   - IP-CIDR,10.0.0.0/8,DIRECT
-  - IP-CIDR,224.0.0.0/4,DIRECT
-
-  # ==== 广告屏蔽规则（修正：使用纯文本"广告拦截"）====
   - DOMAIN-KEYWORD,adservice,广告拦截
-  - DOMAIN-KEYWORD,adsystem,广告拦截
-  - DOMAIN-SUFFIX,doubleclick.net,广告拦截
-  - DOMAIN-SUFFIX,googlesyndication.com,广告拦截
   - DOMAIN-SUFFIX,googleadservices.com,广告拦截
-  - DOMAIN-SUFFIX,admarvel.com,广告拦截
-  - DOMAIN-SUFFIX,admob.com,广告拦截
-  - DOMAIN-SUFFIX,adsymptotic.com,广告拦截
-
-  # ==== 中国大陆IP直连 ====
   - GEOIP,CN,国内直连
-
-  # ==== 国内常用服务直连 ====
-  - DOMAIN-SUFFIX,qq.com,国内直连
-  - DOMAIN-SUFFIX,baidu.com,国内直连
-  - DOMAIN-SUFFIX,taobao.com,国内直连
-  - DOMAIN-SUFFIX,jd.com,国内直连
-  - DOMAIN-SUFFIX,weibo.com,国内直连
-  - DOMAIN-SUFFIX,bilibili.com,国内直连
-  - DOMAIN-SUFFIX,zhihu.com,国内直连
-  - DOMAIN-SUFFIX,douyin.com,国内直连
-  - DOMAIN-SUFFIX,alipay.com,国内直连
-  - DOMAIN-SUFFIX,weixin.qq.com,国内直连
-  - DOMAIN-SUFFIX,163.com,国内直连
-  - DOMAIN-SUFFIX,sina.com.cn,国内直连
-  - DOMAIN-SUFFIX,sohu.com,国内直连
-
-  # ==== AI服务走代理 ====
   - DOMAIN-SUFFIX,openai.com,AI服务
-  - DOMAIN-SUFFIX,chat.openai.com,AI服务
-  - DOMAIN-SUFFIX,platform.openai.com,AI服务
-  - DOMAIN-SUFFIX,api.openai.com,AI服务
   - DOMAIN-SUFFIX,anthropic.com,AI服务
-  - DOMAIN-SUFFIX,claude.ai,AI服务
   - DOMAIN-SUFFIX,github.com,AI服务
-  - DOMAIN-SUFFIX,githubusercontent.com,AI服务
-
-  # ==== 国外流媒体服务 ====
-  - DOMAIN-SUFFIX,netflix.com,国外媒体
-  - DOMAIN-SUFFIX,netflix.net,国外媒体
-  - DOMAIN-SUFFIX,nflxext.com,国外媒体
-  - DOMAIN-SUFFIX,nflximg.com,国外媒体
-  - DOMAIN-SUFFIX,nflxvideo.net,国外媒体
-  - DOMAIN-SUFFIX,disneyplus.com,国外媒体
-  - DOMAIN-SUFFIX,disney-plus.net,国外媒体
-  - DOMAIN-SUFFIX,hulu.com,国外媒体
-  - DOMAIN-SUFFIX,huluim.com,国外媒体
-  - DOMAIN-SUFFIX,hbomax.com,国外媒体
-  - DOMAIN-SUFFIX,hbo.com,国外媒体
   - DOMAIN-SUFFIX,youtube.com,国外媒体
-  - DOMAIN-SUFFIX,youtu.be,国外媒体
-  - DOMAIN-SUFFIX,ytimg.com,国外媒体
-  - DOMAIN-SUFFIX,googlevideo.com,国外媒体
-
-  # ==== 社交媒体 ====
-  - DOMAIN-SUFFIX,twitter.com,国外网站
-  - DOMAIN-SUFFIX,t.co,国外网站
-  - DOMAIN-SUFFIX,twimg.com,国外网站
-  - DOMAIN-SUFFIX,facebook.com,国外网站
-  - DOMAIN-SUFFIX,fb.com,国外网站
-  - DOMAIN-SUFFIX,fbcdn.net,国外网站
-  - DOMAIN-SUFFIX,instagram.com,国外网站
-  - DOMAIN-SUFFIX,cdninstagram.com,国外网站
-  - DOMAIN-SUFFIX,whatsapp.com,国外网站
-  - DOMAIN-SUFFIX,telegram.org,国外网站
-  - DOMAIN-SUFFIX,t.me,国外网站
-  - DOMAIN-SUFFIX,reddit.com,国外网站
-  - DOMAIN-SUFFIX,redditstatic.com,国外网站
-  - DOMAIN-SUFFIX,redditmedia.com,国外网站
-
-  # ==== Google服务 ====
   - DOMAIN-SUFFIX,google.com,国外网站
-  - DOMAIN-SUFFIX,gstatic.com,国外网站
-  - DOMAIN-SUFFIX,googleapis.com,国外网站
-  - DOMAIN-SUFFIX,googleusercontent.com,国外网站
-  - DOMAIN-SUFFIX,gmail.com,国外网站
-  - DOMAIN-SUFFIX,googlemail.com,国外网站
-  - DOMAIN-SUFFIX,googledrive.com,国外网站
-  - DOMAIN-SUFFIX,googlephotos.com,国外网站
-  - DOMAIN-SUFFIX,googleplay.com,国外网站
-
-  # ==== Microsoft服务 ====
-  - DOMAIN-SUFFIX,microsoft.com,国外网站
-  - DOMAIN-SUFFIX,windows.net,国外网站
-  - DOMAIN-SUFFIX,azure.com,国外网站
-  - DOMAIN-SUFFIX,office.com,国外网站
-  - DOMAIN-SUFFIX,office365.com,国外网站
-
-  # ==== Apple服务 ====
-  - DOMAIN-SUFFIX,apple.com,国外网站
-  - DOMAIN-SUFFIX,icloud.com,国外网站
-  - DOMAIN-SUFFIX,appstore.com,国外网站
-
-  # ==== 其他国外常用服务 ====
-  - DOMAIN-SUFFIX,wikipedia.org,国外网站
-  - DOMAIN-SUFFIX,wikimedia.org,国外网站
-  - DOMAIN-SUFFIX,medium.com,国外网站
-  - DOMAIN-SUFFIX,stackoverflow.com,国外网站
-  - DOMAIN-SUFFIX,stackexchange.com,国外网站
-  - DOMAIN-SUFFIX,dropbox.com,国外网站
-  - DOMAIN-SUFFIX,amazon.com,国外网站
-  - DOMAIN-SUFFIX,aws.amazon.com,国外网站
-
-  # ==== 最终规则 ====
-  # 国外IP走代理
+  - DOMAIN-SUFFIX,twitter.com,国外网站
+  - DOMAIN-SUFFIX,telegram.org,国外网站
   - GEOIP,!CN,国外网站
-  
-  # 剩余所有流量走代理
   - MATCH,TUIC代理
