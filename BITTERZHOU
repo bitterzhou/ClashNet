@@ -63,17 +63,17 @@ proxies:
 - name: "Shadowsocks-2022-dedirock-96354141"
   type: ss
   server: 192.227.229.51
-  port: 37703
+  port: 41103
   cipher: 2022-blake3-aes-128-gcm
-  password: "CQxKhE4kiBdUkPcs0JQIbQ=="
+  password: "IijMsjtaNwGAS8vahj6baQ=="
   udp: true
 
 # 新增节点 - Hysteria2
 - name: "hy2-dedirock-96354141"
   type: hysteria2
   server: 192.227.229.51
-  port: 37701
-  password: 27e12f03-1adb-4d69-a240-468ab6b9d966
+  port: 28133
+  password: c3e44804-5149-4bfe-9a33-d5051af3c65e
   sni: "www.bing.com"
   alpn: ["h3"]
   skip-cert-verify: true
@@ -84,9 +84,9 @@ proxies:
 - name: "tuic-dedirock-96354141"
   type: tuic
   server: 192.227.229.51
-  port: 37702
-  uuid: 27e12f03-1adb-4d69-a240-468ab6b9d966
-  password: 27e12f03-1adb-4d69-a240-468ab6b9d966
+  port: 26214
+  uuid: c3e44804-5149-4bfe-9a33-d5051af3c65e
+  password: c3e44804-5149-4bfe-9a33-d5051af3c65e
   heartbeat-interval: 10000
   alpn: ["h3"]
   reduce-rtt: true
