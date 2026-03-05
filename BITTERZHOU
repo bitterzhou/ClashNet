@@ -59,15 +59,6 @@ proxies:
     skip-cert-verify: true
     sni: www.apple.com
 
-# 新增节点 - Shadowsocks 2022
-  - name: "BITTER-SERVER-1-Shadowsocks-2022"
-    type: ss
-    server: 192.227.229.51
-    port: 41103
-    cipher: 2022-blake3-aes-128-gcm
-    password: "IijMsjtaNwGAS8vahj6baQ=="
-    udp: true
-
   # 新增节点 - Hysteria2
   - name: "BITTER-SERVER-1-hy2"
     type: hysteria2
