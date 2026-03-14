@@ -94,7 +94,6 @@ proxy-groups:
     type: select
     proxies:
       - "TUIC-bitterzhou"
-      - "BITTER-SERVER-1-Shadowsocks-2022"
       - "BITTER-SERVER-1-hy2"
       - "BITTER-SERVER-1-tuic"
       - DIRECT
