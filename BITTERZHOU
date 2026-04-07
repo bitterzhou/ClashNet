@@ -124,6 +124,8 @@ proxy-groups:
       - "TUIC-bitterzhou"
       - "BITTER-SERVER-1-hy2"
       - "BITTER-SERVER-1-tuic"
+      - "BITTER-SERVER-2-hy2"
+      - "BITTER-SERVER-2-tuic"
       - DIRECT
   
   # 修正：使用纯文本名称"广告拦截"，和规则中引用的名称完全一致
@@ -131,29 +133,6 @@ proxy-groups:
     type: select
     proxies:
       - REJECT
-      - DIRECT
-  
-  - name: "国内直连"
-    type: select
-    proxies:
-      - DIRECT
-  
-  - name: "AI服务"
-    type: select
-    proxies:
-      - "TUIC代理"
-      - DIRECT
-  
-  - name: "国外媒体"
-    type: select
-    proxies:
-      - "TUIC代理"
-      - DIRECT
-  
-  - name: "国外网站"
-    type: select
-    proxies:
-      - "TUIC代理"
       - DIRECT
 
 # 规则配置（全部使用纯文本代理组名称，确保匹配）
