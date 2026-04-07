@@ -65,7 +65,7 @@ proxies:
     server: 192.227.229.51
     port: 28133
     password: c3e44804-5149-4bfe-9a33-d5051af3c65e
-    sni: "www.bing.com"
+    sni: "www.apple.com"
     alpn: ["h3"]
     skip-cert-verify: true
     up: "1000 Mbps"
@@ -85,7 +85,35 @@ proxies:
     udp-relay-mode: native
     congestion-controller: bbr
     skip-cert-verify: true
-    sni: "www.bing.com"
+    sni: "www.apple.com"
+
+  # 新增节点2 - Hysteria2
+  - name: "BITTER-SERVER-2-hy2"
+    type: hysteria2
+    server: 66.154.113.16
+    port: 7001
+    password: e9a98960-e28b-434d-984d-c0aee9df8978
+    sni: "www.apple.com"
+    alpn: ["h3"]
+    skip-cert-verify: true
+    up: "1000 Mbps"
+    down: "1000 Mbps"
+
+  # 新增节点2 - Tuic
+  - name: "BITTER-SERVER-2-tuic"
+    type: tuic
+    server: 66.154.113.16
+    port: 7002
+    uuid: e9a98960-e28b-434d-984d-c0aee9df8978
+    password: e9a98960-e28b-434d-984d-c0aee9df8978
+    heartbeat-interval: 10000
+    alpn: ["h3"]
+    reduce-rtt: true
+    request-timeout: 8000
+    udp-relay-mode: native
+    congestion-controller: bbr
+    skip-cert-verify: true
+    sni: "www.apple.com"
 
 # 代理组配置（关键修正：统一使用纯文本名称，避免符号导致的匹配问题）
 proxy-groups:
