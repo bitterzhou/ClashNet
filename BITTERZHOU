@@ -127,13 +127,6 @@ proxy-groups:
       - "BITTER-SERVER-2-hy2"
       - "BITTER-SERVER-2-tuic"
       - DIRECT
-  
-  # 修正：使用纯文本名称"广告拦截"，和规则中引用的名称完全一致
-  - name: "广告拦截"
-    type: select
-    proxies:
-      - REJECT
-      - DIRECT
 
 # 规则配置（全部使用纯文本代理组名称，确保匹配）
 rules:
