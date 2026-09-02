@@ -98,6 +98,34 @@ proxies:
     skip-cert-verify: true
     sni: www.bing.com
 
+  # BITTERZHOU-SERVER-3
+  - name: "hy2-bitterzhou-3"
+    type: hysteria2
+    server: 66.154.113.16
+    port: 22777
+    password: 1230ed34-c975-444f-a745-c28829b0e308
+    sni: www.bing.com
+    alpn:
+      - h3
+    skip-cert-verify: false
+    fingerprint: 22337f069ae93769b6f7302308f78453fff486b39ef2b908a4158995f065978b
+
+  - name: "tuic-bitterzhou-3"
+    type: tuic
+    server: 66.154.113.16
+    port: 22888
+    uuid: 1230ed34-c975-444f-a745-c28829b0e308
+    password: 1230ed34-c975-444f-a745-c28829b0e308
+    heartbeat-interval: 10000
+    alpn:
+      - h3
+    reduce-rtt: true
+    request-timeout: 8000
+    udp-relay-mode: native
+    congestion-controller: bbr
+    skip-cert-verify: true
+    sni: www.bing.com
+
 # 代理组配置（关键修正：统一使用纯文本名称，避免符号导致的匹配问题）
 proxy-groups:
   # 主要代理组
@@ -108,6 +136,8 @@ proxy-groups:
       - "tuic-bitterzhou-1"
       - "hy2-bitterzhou-2"
       - "tuic-bitterzhou-2"
+      - "hy2-bitterzhou-3"
+      - "tuic-bitterzhou-3"
       - DIRECT
   
   - name: "国内直连"
