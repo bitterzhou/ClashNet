@@ -42,120 +42,77 @@ dns:
 
 # 节点配置
 proxies:
-  - name: "TUIC-bitterzhou"
+  # BITTERZHOU-SERVER-1
+  - name: "hy2-bitterzhou-1"
+    type: hysteria2
+    server: 198.46.145.251
+    port: 22888
+    password: d0e64dd6-c099-42a2-9ca3-614d8c4b68ac
+    sni: www.bing.com
+    alpn:
+      - h3
+    skip-cert-verify: false
+    fingerprint: c5fbdb27c82e82d8e940536af59829a28d196993aa5df7e3a649c53d8868bbd8
+
+  - name: "tuic-bitterzhou-1"
     type: tuic
     server: 198.46.145.251
-    port: 7777
-    uuid: c3e44804-5149-4bfe-9a33-d5051af3c65e
-    password: c3e44804-5149-4bfe-9a33-d5051af3c65e
-    ip: 198.46.145.251
+    port: 22777
+    uuid: d0e64dd6-c099-42a2-9ca3-614d8c4b68ac
+    password: d0e64dd6-c099-42a2-9ca3-614d8c4b68ac
     heartbeat-interval: 10000
-    alpn: 
+    alpn:
       - h3
     reduce-rtt: true
     request-timeout: 8000
     udp-relay-mode: native
     congestion-controller: bbr
     skip-cert-verify: true
-    sni: www.apple.com
+    sni: www.bing.com
 
-  # 新增节点 - Hysteria2
-  - name: "BITTER-SERVER-1-hy2"
+  # BITTERZHOU-SERVER-2
+  - name: "hy2-bitterzhou-2"
     type: hysteria2
     server: 192.227.229.51
-    port: 28133
-    password: c3e44804-5149-4bfe-9a33-d5051af3c65e
-    sni: "www.apple.com"
-    alpn: ["h3"]
-    skip-cert-verify: true
-    up: "1000 Mbps"
-    down: "1000 Mbps"
+    port: 22888
+    password: d0e64dd6-c099-42a2-9ca3-614d8c4b68ac
+    sni: www.bing.com
+    alpn:
+      - h3
+    skip-cert-verify: false
+    fingerprint: c8699a023a28a190d7aa17f5e34dbcf458f49cf959f341782c5fefb0832382cc
 
-  # 新增节点 - Tuic
-  - name: "BITTER-SERVER-1-tuic"
+  - name: "tuic-bitterzhou-2"
     type: tuic
     server: 192.227.229.51
-    port: 26214
-    uuid: c3e44804-5149-4bfe-9a33-d5051af3c65e
-    password: c3e44804-5149-4bfe-9a33-d5051af3c65e
+    port: 22777
+    uuid: d0e64dd6-c099-42a2-9ca3-614d8c4b68ac
+    password: d0e64dd6-c099-42a2-9ca3-614d8c4b68ac
     heartbeat-interval: 10000
-    alpn: ["h3"]
+    alpn:
+      - h3
     reduce-rtt: true
     request-timeout: 8000
     udp-relay-mode: native
     congestion-controller: bbr
     skip-cert-verify: true
-    sni: "www.apple.com"
-
-  # 新增节点2 - Hysteria2
-  - name: "BITTER-SERVER-2-hy2"
-    type: hysteria2
-    server: 66.154.113.16
-    port: 7001
-    password: e9a98960-e28b-434d-984d-c0aee9df8978
-    sni: "www.apple.com"
-    alpn: ["h3"]
-    skip-cert-verify: true
-    up: "1000 Mbps"
-    down: "1000 Mbps"
-
-  # 新增节点2 - Tuic
-  - name: "BITTER-SERVER-2-tuic"
-    type: tuic
-    server: 66.154.113.16
-    port: 7002
-    uuid: e9a98960-e28b-434d-984d-c0aee9df8978
-    password: e9a98960-e28b-434d-984d-c0aee9df8978
-    heartbeat-interval: 10000
-    alpn: ["h3"]
-    reduce-rtt: true
-    request-timeout: 8000
-    udp-relay-mode: native
-    congestion-controller: bbr
-    skip-cert-verify: true
-    sni: "www.apple.com"
+    sni: www.bing.com
 
 # 代理组配置（关键修正：统一使用纯文本名称，避免符号导致的匹配问题）
 proxy-groups:
   # 主要代理组
-  - name: "TUIC代理"
+  - name: "BITTERZHOU代理"
     type: select
     proxies:
-      - "TUIC-bitterzhou"
-      - "BITTER-SERVER-1-hy2"
-      - "BITTER-SERVER-1-tuic"
-      - "BITTER-SERVER-2-hy2"
-      - "BITTER-SERVER-2-tuic"
-      - DIRECT
-  
-  # 修正：使用纯文本名称"广告拦截"，和规则中引用的名称完全一致
-  - name: "广告拦截"
-    type: select
-    proxies:
-      - REJECT
+      - "hy2-bitterzhou-1"
+      - "tuic-bitterzhou-1"
+      - "hy2-bitterzhou-2"
+      - "tuic-bitterzhou-2"
       - DIRECT
   
   - name: "国内直连"
     type: select
     proxies:
-      - DIRECT
-  
-  - name: "AI服务"
-    type: select
-    proxies:
-      - "TUIC代理"
-      - DIRECT
-  
-  - name: "国外媒体"
-    type: select
-    proxies:
-      - "TUIC代理"
-      - DIRECT
-  
-  - name: "国外网站"
-    type: select
-    proxies:
-      - "TUIC代理"
       - DIRECT
 
 # 规则配置（全部使用纯文本代理组名称，确保匹配）
@@ -165,18 +122,19 @@ rules:
   - IP-CIDR,127.0.0.0/8,DIRECT
   - IP-CIDR,172.16.0.0/12,DIRECT
   - IP-CIDR,192.168.0.0/16,DIRECT
+  - IP-CIDR,172.30.0.0/16,DIRECT
   - IP-CIDR,10.0.0.0/8,DIRECT
   - IP-CIDR,224.0.0.0/4,DIRECT
 
-  # ==== 广告屏蔽规则（修正：使用纯文本"广告拦截"）====
-  - DOMAIN-KEYWORD,adservice,广告拦截
-  - DOMAIN-KEYWORD,adsystem,广告拦截
-  - DOMAIN-SUFFIX,doubleclick.net,广告拦截
-  - DOMAIN-SUFFIX,googlesyndication.com,广告拦截
-  - DOMAIN-SUFFIX,googleadservices.com,广告拦截
-  - DOMAIN-SUFFIX,admarvel.com,广告拦截
-  - DOMAIN-SUFFIX,admob.com,广告拦截
-  - DOMAIN-SUFFIX,adsymptotic.com,广告拦截
+  # ==== 广告屏蔽规则（修正：使用纯文本"BITTERZHOU代理"）====
+  - DOMAIN-KEYWORD,adservice,BITTERZHOU代理
+  - DOMAIN-KEYWORD,adsystem,BITTERZHOU代理
+  - DOMAIN-SUFFIX,doubleclick.net,BITTERZHOU代理
+  - DOMAIN-SUFFIX,googlesyndication.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,googleadservices.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,admarvel.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,admob.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,adsymptotic.com,BITTERZHOU代理
 
   # ==== 中国大陆IP直连 ====
   - GEOIP,CN,国内直连
@@ -196,85 +154,85 @@ rules:
   - DOMAIN-SUFFIX,sina.com.cn,国内直连
   - DOMAIN-SUFFIX,sohu.com,国内直连
 
-  # ==== AI服务走代理 ====
-  - DOMAIN-SUFFIX,openai.com,AI服务
-  - DOMAIN-SUFFIX,chat.openai.com,AI服务
-  - DOMAIN-SUFFIX,platform.openai.com,AI服务
-  - DOMAIN-SUFFIX,api.openai.com,AI服务
-  - DOMAIN-SUFFIX,anthropic.com,AI服务
-  - DOMAIN-SUFFIX,claude.ai,AI服务
-  - DOMAIN-SUFFIX,github.com,AI服务
-  - DOMAIN-SUFFIX,githubusercontent.com,AI服务
+  # ==== BITTERZHOU代理走代理 ====
+  - DOMAIN-SUFFIX,openai.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,chat.openai.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,platform.openai.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,api.openai.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,anthropic.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,claude.ai,BITTERZHOU代理
+  - DOMAIN-SUFFIX,github.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,githubusercontent.com,BITTERZHOU代理
 
   # ==== 国外流媒体服务 ====
-  - DOMAIN-SUFFIX,netflix.com,国外媒体
-  - DOMAIN-SUFFIX,netflix.net,国外媒体
-  - DOMAIN-SUFFIX,nflxext.com,国外媒体
-  - DOMAIN-SUFFIX,nflximg.com,国外媒体
-  - DOMAIN-SUFFIX,nflxvideo.net,国外媒体
-  - DOMAIN-SUFFIX,disneyplus.com,国外媒体
-  - DOMAIN-SUFFIX,disney-plus.net,国外媒体
-  - DOMAIN-SUFFIX,hulu.com,国外媒体
-  - DOMAIN-SUFFIX,huluim.com,国外媒体
-  - DOMAIN-SUFFIX,hbomax.com,国外媒体
-  - DOMAIN-SUFFIX,hbo.com,国外媒体
-  - DOMAIN-SUFFIX,youtube.com,国外媒体
-  - DOMAIN-SUFFIX,youtu.be,国外媒体
-  - DOMAIN-SUFFIX,ytimg.com,国外媒体
-  - DOMAIN-SUFFIX,googlevideo.com,国外媒体
+  - DOMAIN-SUFFIX,netflix.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,netflix.net,BITTERZHOU代理
+  - DOMAIN-SUFFIX,nflxext.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,nflximg.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,nflxvideo.net,BITTERZHOU代理
+  - DOMAIN-SUFFIX,disneyplus.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,disney-plus.net,BITTERZHOU代理
+  - DOMAIN-SUFFIX,hulu.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,huluim.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,hbomax.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,hbo.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,youtube.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,youtu.be,BITTERZHOU代理
+  - DOMAIN-SUFFIX,ytimg.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,googlevideo.com,BITTERZHOU代理
 
   # ==== 社交媒体 ====
-  - DOMAIN-SUFFIX,twitter.com,国外网站
-  - DOMAIN-SUFFIX,t.co,国外网站
-  - DOMAIN-SUFFIX,twimg.com,国外网站
-  - DOMAIN-SUFFIX,facebook.com,国外网站
-  - DOMAIN-SUFFIX,fb.com,国外网站
-  - DOMAIN-SUFFIX,fbcdn.net,国外网站
-  - DOMAIN-SUFFIX,instagram.com,国外网站
-  - DOMAIN-SUFFIX,cdninstagram.com,国外网站
-  - DOMAIN-SUFFIX,whatsapp.com,国外网站
-  - DOMAIN-SUFFIX,telegram.org,国外网站
-  - DOMAIN-SUFFIX,t.me,国外网站
-  - DOMAIN-SUFFIX,reddit.com,国外网站
-  - DOMAIN-SUFFIX,redditstatic.com,国外网站
-  - DOMAIN-SUFFIX,redditmedia.com,国外网站
+  - DOMAIN-SUFFIX,twitter.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,t.co,BITTERZHOU代理
+  - DOMAIN-SUFFIX,twimg.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,facebook.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,fb.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,fbcdn.net,BITTERZHOU代理
+  - DOMAIN-SUFFIX,instagram.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,cdninstagram.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,whatsapp.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,telegram.org,BITTERZHOU代理
+  - DOMAIN-SUFFIX,t.me,BITTERZHOU代理
+  - DOMAIN-SUFFIX,reddit.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,redditstatic.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,redditmedia.com,BITTERZHOU代理
 
   # ==== Google服务 ====
-  - DOMAIN-SUFFIX,google.com,国外网站
-  - DOMAIN-SUFFIX,gstatic.com,国外网站
-  - DOMAIN-SUFFIX,googleapis.com,国外网站
-  - DOMAIN-SUFFIX,googleusercontent.com,国外网站
-  - DOMAIN-SUFFIX,gmail.com,国外网站
-  - DOMAIN-SUFFIX,googlemail.com,国外网站
-  - DOMAIN-SUFFIX,googledrive.com,国外网站
-  - DOMAIN-SUFFIX,googlephotos.com,国外网站
-  - DOMAIN-SUFFIX,googleplay.com,国外网站
+  - DOMAIN-SUFFIX,google.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,gstatic.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,googleapis.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,googleusercontent.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,gmail.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,googlemail.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,googledrive.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,googlephotos.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,googleplay.com,BITTERZHOU代理
 
   # ==== Microsoft服务 ====
-  - DOMAIN-SUFFIX,microsoft.com,国外网站
-  - DOMAIN-SUFFIX,windows.net,国外网站
-  - DOMAIN-SUFFIX,azure.com,国外网站
-  - DOMAIN-SUFFIX,office.com,国外网站
-  - DOMAIN-SUFFIX,office365.com,国外网站
+  - DOMAIN-SUFFIX,microsoft.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,windows.net,BITTERZHOU代理
+  - DOMAIN-SUFFIX,azure.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,office.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,office365.com,BITTERZHOU代理
 
   # ==== Apple服务 ====
-  - DOMAIN-SUFFIX,apple.com,国外网站
-  - DOMAIN-SUFFIX,icloud.com,国外网站
-  - DOMAIN-SUFFIX,appstore.com,国外网站
+  - DOMAIN-SUFFIX,apple.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,icloud.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,appstore.com,BITTERZHOU代理
 
   # ==== 其他国外常用服务 ====
-  - DOMAIN-SUFFIX,wikipedia.org,国外网站
-  - DOMAIN-SUFFIX,wikimedia.org,国外网站
-  - DOMAIN-SUFFIX,medium.com,国外网站
-  - DOMAIN-SUFFIX,stackoverflow.com,国外网站
-  - DOMAIN-SUFFIX,stackexchange.com,国外网站
-  - DOMAIN-SUFFIX,dropbox.com,国外网站
-  - DOMAIN-SUFFIX,amazon.com,国外网站
-  - DOMAIN-SUFFIX,aws.amazon.com,国外网站
+  - DOMAIN-SUFFIX,wikipedia.org,BITTERZHOU代理
+  - DOMAIN-SUFFIX,wikimedia.org,BITTERZHOU代理
+  - DOMAIN-SUFFIX,medium.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,stackoverflow.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,stackexchange.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,dropbox.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,amazon.com,BITTERZHOU代理
+  - DOMAIN-SUFFIX,aws.amazon.com,BITTERZHOU代理
 
   # ==== 最终规则 ====
   # 国外IP走代理
-  - GEOIP,!CN,国外网站
+  - GEOIP,!CN,BITTERZHOU代理
   
   # 剩余所有流量走代理
-  - MATCH,TUIC代理
+  - MATCH,BITTERZHOU代理
