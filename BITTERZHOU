@@ -126,15 +126,15 @@ rules:
   - IP-CIDR,10.0.0.0/8,DIRECT
   - IP-CIDR,224.0.0.0/4,DIRECT
 
-  # ==== 广告屏蔽规则（修正：使用纯文本"BITTERZHOU代理"）====
-  - DOMAIN-KEYWORD,adservice,BITTERZHOU代理
-  - DOMAIN-KEYWORD,adsystem,BITTERZHOU代理
-  - DOMAIN-SUFFIX,doubleclick.net,BITTERZHOU代理
-  - DOMAIN-SUFFIX,googlesyndication.com,BITTERZHOU代理
-  - DOMAIN-SUFFIX,googleadservices.com,BITTERZHOU代理
-  - DOMAIN-SUFFIX,admarvel.com,BITTERZHOU代理
-  - DOMAIN-SUFFIX,admob.com,BITTERZHOU代理
-  - DOMAIN-SUFFIX,adsymptotic.com,BITTERZHOU代理
+  # ==== 广告屏蔽规则 ====
+  - DOMAIN-KEYWORD,adservice,REJECT
+  - DOMAIN-KEYWORD,adsystem,REJECT
+  - DOMAIN-SUFFIX,doubleclick.net,REJECT
+  - DOMAIN-SUFFIX,googlesyndication.com,REJECT
+  - DOMAIN-SUFFIX,googleadservices.com,REJECT
+  - DOMAIN-SUFFIX,admarvel.com,REJECT
+  - DOMAIN-SUFFIX,admob.com,REJECT
+  - DOMAIN-SUFFIX,adsymptotic.com,REJECT
 
   # ==== 中国大陆IP直连 ====
   - GEOIP,CN,国内直连
@@ -154,7 +154,7 @@ rules:
   - DOMAIN-SUFFIX,sina.com.cn,国内直连
   - DOMAIN-SUFFIX,sohu.com,国内直连
 
-  # ==== BITTERZHOU代理走代理 ====
+  # ==== AI服务 ====
   - DOMAIN-SUFFIX,openai.com,BITTERZHOU代理
   - DOMAIN-SUFFIX,chat.openai.com,BITTERZHOU代理
   - DOMAIN-SUFFIX,platform.openai.com,BITTERZHOU代理
